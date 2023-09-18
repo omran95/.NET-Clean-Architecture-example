@@ -1,0 +1,82 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.11" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Mapster" Version="7.3.0" />
+    <PackageReference Include="ErrorOr" Version="1.2.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.11" />
+    <PackageReference Include="Mapster.Core" Version="1.2.0" />
+    <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.11" />
+    <PackageReference Include="MediatR" Version="12.1.1" />
+    <PackageReference Include="FluentValidation" Version="11.7.1" />
+    <PackageReference Include="MediatR.Extensions" Version="0.6.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="MediatR.Extensions.FluentValidation.AspNetCore" Version="4.0.0" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Src\" />
+    <None Remove="Src\Application\" />
+    <None Remove="Src\Infrastructure\" />
+    <None Remove="Src\Domain\" />
+    <None Remove="Src\Api\" />
+    <None Remove="Src\Api\Authentication\" />
+    <None Remove="Src\Api\Authentication\DTOs\" />
+    <None Remove="Src\Api\Common\" />
+    <None Remove="Src\Application\Authentication\" />
+    <None Remove="Src\Application\Authentication\Commands\" />
+    <None Remove="Src\Application\Authentication\Commands\Register\" />
+    <None Remove="Src\Application\Authentication\DTOs\" />
+    <None Remove="Src\Domain\User\" />
+    <None Remove="Src\Domain\Common\" />
+    <None Remove="Src\Domain\Common\Models\" />
+    <None Remove="Src\Domain\User\ValueObjects\" />
+    <None Remove="Src\Domain\Common\contracts\" />
+    <None Remove="Scripts\" />
+    <None Remove="Src\Api\Common\Errors\" />
+    <None Remove="Src\Api\Common\Mapping\" />
+    <None Remove="Src\Application\Common\" />
+    <None Remove="Src\Application\Common\Behaviors\" />
+    <None Remove="Src\Infrastructure\Persistence\" />
+    <None Remove="Src\Infrastructure\Authentication\" />
+    <None Remove="Src\Infrastructure\Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Src\" />
+    <Folder Include="Src\Application\" />
+    <Folder Include="Src\Infrastructure\" />
+    <Folder Include="Src\Domain\" />
+    <Folder Include="Src\Api\" />
+    <Folder Include="Src\Api\Authentication\" />
+    <Folder Include="Src\Api\Authentication\DTOs\" />
+    <Folder Include="Src\Api\Common\" />
+    <Folder Include="Src\Application\Authentication\" />
+    <Folder Include="Src\Application\Authentication\Commands\" />
+    <Folder Include="Src\Application\Authentication\Commands\Register\" />
+    <Folder Include="Src\Application\Authentication\DTOs\" />
+    <Folder Include="Src\Domain\User\" />
+    <Folder Include="Src\Domain\Common\" />
+    <Folder Include="Src\Domain\Common\Models\" />
+    <Folder Include="Src\Domain\User\ValueObjects\" />
+    <Folder Include="Src\Domain\Common\contracts\" />
+    <Folder Include="Scripts\" />
+    <Folder Include="Src\Api\Common\Errors\" />
+    <Folder Include="Src\Api\Common\Mapping\" />
+    <Folder Include="Src\Application\Common\" />
+    <Folder Include="Src\Application\Common\Behaviors\" />
+    <Folder Include="Src\Infrastructure\Persistence\" />
+    <Folder Include="Src\Infrastructure\Authentication\" />
+    <Folder Include="Src\Infrastructure\Services\" />
+  </ItemGroup>
+</Project>
