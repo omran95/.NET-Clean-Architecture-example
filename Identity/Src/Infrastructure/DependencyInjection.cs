@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Identity.Src.Domain.User;
 
 namespace Identity.Src.Infrastructure;
 
@@ -29,7 +30,7 @@ public static class DependencyInjection
     {
         services.AddDbContext<IdentityDbContext>(options =>
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
-
+        services.AddScoped<IUserRepository, UserRepository>();
         return services;
     }
 

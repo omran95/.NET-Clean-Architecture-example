@@ -1,5 +1,6 @@
 ﻿using Identity.Src.Domain.Common.Models;
 using Identity.Src.Domain.User.ValueObjects;
+using ErrorOr;
 
 namespace Identity.Src.Domain.User;
 
@@ -9,25 +10,28 @@ public class User : AggregateRoot<UserId>
     public string LastName { get; }
     public string Email { get; }
     public string Password { get; }
-    public DateOnly BirthDate { get; }
+    public BirthDate BirthDate { get; private set; }
 
     public DateTime CreatedDateTime { get; }
     public DateTime UpdatedDateTime { get; }
 
-    private User(string firstName, string lastName, string email, string password, DateOnly birthDate, UserId? userId = null) : base(userId ?? UserId.CreateUnique())
+    private User(string firstName, string lastName, string email, string password, BirthDate birthDate, UserId? userId = null) : base(userId ?? UserId.CreateUnique())
     {
         FirstName = firstName;
         LastName = lastName;
         Email = email;
         Password = password;
         BirthDate = birthDate;
-
     }
 
-    public static User create(string firstName, string lastName, string email, string password, DateOnly birthDate)
+    public static ErrorOr<User> Create(string firstName, string lastName, string email, string password, DateOnly birthDateOnly)
     {
+        BirthDate birthDate = new BirthDate(birthDateOnly);
+        if (!birthDate.GreaterThan18())
+        {
+            return Errors.User.LessThan18;
+        }
         return new User(firstName, lastName, email, password, birthDate);
     }
 
 }
-

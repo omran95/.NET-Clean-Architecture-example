@@ -8,7 +8,6 @@ public record RegisterCommand(
     string FirstName,
     string LastName,
     string Email,
-    DateOnly BirthDate,
-    string Password) : IRequest<ErrorOr<AuthenticationResult>>;
+    string Password, DateOnly BirthDate) : IRequest<ErrorOr<AuthenticationResult>>;
 
 

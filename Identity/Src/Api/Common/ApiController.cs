@@ -7,7 +7,6 @@ namespace Identity.Src.Api.Common;
 
 
 [ApiController]
-[Authorize]
 public class ApiController : ControllerBase
 {
     protected IActionResult Problem(List<Error> errors)
