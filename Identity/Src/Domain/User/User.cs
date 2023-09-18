@@ -10,12 +10,12 @@ public class User : AggregateRoot<UserId>
     public string LastName { get; }
     public string Email { get; }
     public string Password { get; }
-    public BirthDate BirthDate { get; private set; }
+    public BirthDate BirthDate { get; }
 
     public DateTime CreatedDateTime { get; }
     public DateTime UpdatedDateTime { get; }
 
-    private User(string firstName, string lastName, string email, string password, BirthDate birthDate, UserId? userId = null) : base(userId ?? UserId.CreateUnique())
+    private User(UserId Id, string firstName, string lastName, string email, string password, BirthDate birthDate) : base(Id)
     {
         FirstName = firstName;
         LastName = lastName;
@@ -26,12 +26,12 @@ public class User : AggregateRoot<UserId>
 
     public static ErrorOr<User> Create(string firstName, string lastName, string email, string password, DateOnly birthDateOnly)
     {
-        BirthDate birthDate = new BirthDate(birthDateOnly);
+        BirthDate birthDate = BirthDate.Create(birthDateOnly);
         if (!birthDate.GreaterThan18())
         {
             return Errors.User.LessThan18;
         }
-        return new User(firstName, lastName, email, password, birthDate);
+        return new User(UserId.CreateUnique(), firstName, lastName, email, password, birthDate);
     }
 
 }

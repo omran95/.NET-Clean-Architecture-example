@@ -22,6 +22,10 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="MediatR.Extensions.FluentValidation.AspNetCore" Version="4.0.0" />
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.11">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -50,6 +54,7 @@
     <None Remove="Src\Infrastructure\Persistence\" />
     <None Remove="Src\Infrastructure\Authentication\" />
     <None Remove="Src\Infrastructure\Services\" />
+    <None Remove="Src\Infrastructure\Persistence\Configuration\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Src\" />
@@ -77,5 +82,6 @@
     <Folder Include="Src\Infrastructure\Persistence\" />
     <Folder Include="Src\Infrastructure\Authentication\" />
     <Folder Include="Src\Infrastructure\Services\" />
+    <Folder Include="Src\Infrastructure\Persistence\Configuration\" />
   </ItemGroup>
 </Project>

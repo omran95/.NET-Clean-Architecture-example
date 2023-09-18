@@ -1,5 +1,4 @@
-﻿using System;
-using Identity.Src.Domain.Common.Models;
+﻿using Identity.Src.Domain.Common.Models;
 
 namespace Identity.Src.Domain.User.ValueObjects;
 
@@ -7,7 +6,7 @@ public class BirthDate : ValueObject
 {
     public DateOnly Value { get; }
 
-    public BirthDate(DateOnly value)
+    private BirthDate(DateOnly value)
     {
         Value = value;
     }
@@ -32,6 +31,11 @@ public class BirthDate : ValueObject
     public override IEnumerable<object> GetEqualityComponents()
     {
         yield return Value;
+    }
+
+    public static BirthDate Create(DateOnly value)
+    {
+        return new BirthDate(value);
     }
 }
 

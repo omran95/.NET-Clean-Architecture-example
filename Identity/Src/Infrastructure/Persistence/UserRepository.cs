@@ -14,7 +14,7 @@ public class UserRepository : IUserRepository
 
     public async Task Add(User user)
     {
-        _identityDbContext.Add(user);
+        await _identityDbContext.AddAsync(user);
         await _identityDbContext.SaveChangesAsync();
     }
 
