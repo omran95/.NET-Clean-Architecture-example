@@ -10,15 +10,15 @@ public static partial class Errors
             code: "User.DuplicateEmail",
             description: "Email is already in use.");
 
-        public static Error LessThan18 => Error.Conflict(
+        public static Error LessThan18 => Error.Validation(
             code: "User.LessThan18",
             description: "User must be at least 18 years old to register.");
 
-        public static Error EmailNotExist => Error.Conflict(
+        public static Error EmailNotExist => Error.NotFound(
             code: "User.EmailNotExist",
             description: "Email Doesn't exist.");
 
-        public static Error InvalidCredentials => Error.Conflict(
+        public static Error InvalidCredentials => Error.Validation(
             code: "User.InvalidCredentials",
             description: "Invalid Credentials");
     }
