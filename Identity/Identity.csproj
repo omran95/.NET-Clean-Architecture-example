@@ -55,6 +55,8 @@
     <None Remove="Src\Infrastructure\Authentication\" />
     <None Remove="Src\Infrastructure\Services\" />
     <None Remove="Src\Infrastructure\Persistence\Configuration\" />
+    <None Remove="Src\Application\Authentication\Queries\" />
+    <None Remove="Src\Application\Authentication\Queries\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Src\" />
@@ -83,5 +85,7 @@
     <Folder Include="Src\Infrastructure\Authentication\" />
     <Folder Include="Src\Infrastructure\Services\" />
     <Folder Include="Src\Infrastructure\Persistence\Configuration\" />
+    <Folder Include="Src\Application\Authentication\Queries\" />
+    <Folder Include="Src\Application\Authentication\Queries\Login\" />
   </ItemGroup>
 </Project>

@@ -2,6 +2,7 @@
 using MediatR;
 using MapsterMapper;
 using Identity.Src.Api.Authentication.DTOs;
+using Identity.Src.Application.Authentication.Queries.Login;
 using Identity.Src.Application.Authentication.Commands.Register;
 using Identity.Src.Application.Authentication.DTOs;
 using Identity.Src.Api.Common;
@@ -27,6 +28,16 @@ public class AuthenicationController : ApiController
         var command = _mapper.Map<RegisterCommand>(registerRequest);
 
         ErrorOr<AuthenticationResult> authResult = await _bus.Send(command);
+
+        return authResult.Match(authResult => Ok(_mapper.Map<AuthenticationResponse>(authResult)), Problem);
+    }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(LoginRequest loginRequest)
+    {
+        var query = _mapper.Map<LoginQuery>(loginRequest);
+
+        ErrorOr<AuthenticationResult> authResult = await _bus.Send(query);
 
         return authResult.Match(authResult => Ok(_mapper.Map<AuthenticationResponse>(authResult)), Problem);
     }

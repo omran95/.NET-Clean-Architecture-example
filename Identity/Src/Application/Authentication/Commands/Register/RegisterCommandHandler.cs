@@ -1,4 +1,5 @@
 ﻿using ErrorOr;
+using Identity.Src.Application.Authentication.Commands.Register;
 using Identity.Src.Application.Authentication.DTOs;
 using Identity.Src.Domain.Common.contracts;
 using Identity.Src.Domain.User;
