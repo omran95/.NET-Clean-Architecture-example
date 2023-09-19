@@ -1,8 +1,8 @@
 ﻿namespace Identity.Src.Application.Authentication.DTOs;
 
-using Src.Domain.User;
+using Src.Domain.User.ValueObjects;
 
 public record AuthenticationResult(
-    User User,
+    UserDescriptor User,
     string Token);
 

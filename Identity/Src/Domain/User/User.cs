@@ -24,6 +24,11 @@ public class User : AggregateRoot<UserId>
         BirthDate = birthDate;
     }
 
+    public UserDescriptor UserDescriptor()
+    {
+        return new UserDescriptor(this);
+    }
+
     public static ErrorOr<User> Create(string firstName, string lastName, string email, string password, DateOnly birthDateOnly)
     {
         BirthDate birthDate = BirthDate.Create(birthDateOnly);

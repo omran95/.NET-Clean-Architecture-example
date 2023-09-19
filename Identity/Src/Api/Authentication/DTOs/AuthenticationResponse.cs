@@ -2,8 +2,8 @@
 
 public record AuthenticationResponse(
     Guid Id,
-    string FirstName,
-    string LastName,
+    string Name,
     string Email,
+    DateOnly BirthDate,
     string Token);
 

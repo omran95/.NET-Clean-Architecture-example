@@ -37,7 +37,7 @@ namespace Identity.Src.Application.Authentication.Commands.Register
             await _userRepository.Add(newUser);
             var token = _jwtTokenGenerator.Generate(newUser);
             return new AuthenticationResult(
-            newUser,
+            newUser.UserDescriptor(),
             token);
         }
     }
