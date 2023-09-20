@@ -90,4 +90,7 @@
     <Folder Include="Src\Application\Authentication\Queries\Login\" />
     <Folder Include="Src\Infrastructure\Persistence\Migrations\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Src\Infrastructure\Persistence\20230920182158_Users.Designer.cs" />
+  </ItemGroup>
 </Project>
