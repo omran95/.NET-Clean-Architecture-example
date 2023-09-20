@@ -8,20 +8,18 @@ using MediatR;
 namespace Identity.Src.Application.Authentication.Commands.Register
 {
     public class RegisterCommandHandler :
-    IRequestHandler<RegisterCommand, ErrorOr<AuthenticationResult>>
+    IRequestHandler<RegisterCommand, ErrorOr<Created>>
     {
         private readonly IUserRepository _userRepository;
         private readonly IPasswordHashService _passwordHashService;
-        private readonly IJwtTokenGenerator _jwtTokenGenerator;
 
-        public RegisterCommandHandler(IUserRepository userRepository, IPasswordHashService passwordHashService, IJwtTokenGenerator jwtTokenGenerator)
+        public RegisterCommandHandler(IUserRepository userRepository, IPasswordHashService passwordHashService)
         {
             _userRepository = userRepository;
             _passwordHashService = passwordHashService;
-            _jwtTokenGenerator = jwtTokenGenerator;
         }
 
-        public async Task<ErrorOr<AuthenticationResult>> Handle(RegisterCommand command, CancellationToken cancellationToken)
+        public async Task<ErrorOr<Created>> Handle(RegisterCommand command, CancellationToken cancellationToken)
         {
             User? user = await _userRepository.FindByEmail(command.Email);
             if (user is not null)
@@ -36,10 +34,7 @@ namespace Identity.Src.Application.Authentication.Commands.Register
             }
             User newUser = result.Value;
             await _userRepository.Add(newUser);
-            var token = _jwtTokenGenerator.Generate(newUser);
-            return new AuthenticationResult(
-            newUser.UserDescriptor(),
-            token);
+            return Result.Created;
         }
     }
 }

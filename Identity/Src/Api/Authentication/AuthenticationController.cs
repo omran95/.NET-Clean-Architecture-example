@@ -27,9 +27,9 @@ public class AuthenicationController : ApiController
     {
         var command = _mapper.Map<RegisterCommand>(registerRequest);
 
-        ErrorOr<AuthenticationResult> authResult = await _bus.Send(command);
+        ErrorOr<Created> result = await _bus.Send(command);
 
-        return authResult.Match(authResult => Ok(_mapper.Map<AuthenticationResponse>(authResult)), Problem);
+        return result.Match(authResult => Ok(), Problem);
     }
 
     [HttpPost("login")]
