@@ -29,7 +29,7 @@ public class AuthenicationController : ApiController
 
         ErrorOr<Created> result = await _bus.Send(command);
 
-        return result.Match(authResult => Ok(), Problem);
+        return result.Match(_ => Ok(), Problem);
     }
 
     [HttpPost("login")]
