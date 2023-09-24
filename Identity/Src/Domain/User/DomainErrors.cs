@@ -21,5 +21,8 @@ public static partial class Errors
         public static Error InvalidCredentials => Error.Validation(
             code: "User.InvalidCredentials",
             description: "Invalid Credentials");
+
+        public static Error AccountNotVerified => Error.Validation(code: "User.AccountNotVerified",
+            description: "Account Not Verified");
     }
 }

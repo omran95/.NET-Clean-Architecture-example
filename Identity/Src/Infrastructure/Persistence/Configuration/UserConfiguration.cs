@@ -43,6 +43,13 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
                 birthDate => birthDate.Value,
                 value => BirthDate.Create(value)
             );
+
+        builder.Property(u => u.Status)
+            .HasMaxLength(100)
+            .HasConversion(
+                model => model.ToString(),
+                db => (UserStatus)Enum.Parse(typeof(UserStatus), db)
+            );
     }
 }
 

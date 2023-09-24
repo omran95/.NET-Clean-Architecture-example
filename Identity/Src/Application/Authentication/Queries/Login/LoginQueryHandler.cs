@@ -6,14 +6,14 @@ using MediatR;
 
 namespace Identity.Src.Application.Authentication.Queries.Login
 {
-	public class LoginQueryHandler : IRequestHandler<LoginQuery, ErrorOr<AuthenticationResult>>
+    public class LoginQueryHandler : IRequestHandler<LoginQuery, ErrorOr<AuthenticationResult>>
     {
         private readonly IUserRepository _userRepository;
         private readonly IPasswordHashService _passwordHashService;
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
 
         public LoginQueryHandler(IUserRepository userRepository, IPasswordHashService passwordHashService, IJwtTokenGenerator jwtTokenGenerator)
-		{
+        {
             _userRepository = userRepository;
             _passwordHashService = passwordHashService;
             _jwtTokenGenerator = jwtTokenGenerator;
@@ -26,6 +26,11 @@ namespace Identity.Src.Application.Authentication.Queries.Login
             if (user is null)
             {
                 return Errors.User.EmailNotExist;
+            }
+
+            if (user.Status == UserStatus.PendingVerification)
+            {
+                return Errors.User.AccountNotVerified;
             }
 
             bool isValidPassword = _passwordHashService.VerifyPassword(query.Password, user.Password);

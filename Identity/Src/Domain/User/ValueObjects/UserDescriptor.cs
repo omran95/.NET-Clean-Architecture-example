@@ -10,12 +10,12 @@ public class UserDescriptor : ValueObject
     public BirthDate BirthDate { get; }
 
     public UserDescriptor(User user)
-	{
-        Email= user.Email;
+    {
+        Email = user.Email;
         UserId = user.Id;
         Name = $"{user.FirstName} {user.LastName}";
         BirthDate = user.BirthDate;
-	}
+    }
 
     public override IEnumerable<object?> GetEqualityComponents()
     {
