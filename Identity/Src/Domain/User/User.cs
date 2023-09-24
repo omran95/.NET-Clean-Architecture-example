@@ -12,11 +12,12 @@ public class User : AggregateRoot<UserId>
     public string Password { get; }
     public UserStatus Status { get; }
     public BirthDate BirthDate { get; }
+    public string VerificationCode { get; }
 
     public DateTime CreatedDateTime { get; }
     public DateTime UpdatedDateTime { get; }
 
-    private User(UserId Id, string firstName, string lastName, string email, string password, UserStatus status, BirthDate birthDate) : base(Id)
+    private User(UserId Id, string firstName, string lastName, string email, string password, UserStatus status, BirthDate birthDate, string verificationCode) : base(Id)
     {
         FirstName = firstName;
         LastName = lastName;
@@ -24,6 +25,7 @@ public class User : AggregateRoot<UserId>
         Password = password;
         Status = status;
         BirthDate = birthDate;
+        VerificationCode = verificationCode;
     }
 
     public UserDescriptor UserDescriptor()
@@ -31,14 +33,14 @@ public class User : AggregateRoot<UserId>
         return new UserDescriptor(this);
     }
 
-    public static ErrorOr<User> Create(string firstName, string lastName, string email, string password, DateOnly birthDateOnly)
+    public static ErrorOr<User> Create(string firstName, string lastName, string email, string password, DateOnly birthDateOnly, string verificationCode)
     {
         BirthDate birthDate = BirthDate.Create(birthDateOnly);
         if (!birthDate.GreaterThan18())
         {
             return Errors.User.LessThan18;
         }
-        return new User(UserId.CreateUnique(), firstName, lastName, email, password, UserStatus.PendingVerification, birthDate);
+        return new User(UserId.CreateUnique(), firstName, lastName, email, password, UserStatus.PendingVerification, birthDate, verificationCode);
     }
 
 }

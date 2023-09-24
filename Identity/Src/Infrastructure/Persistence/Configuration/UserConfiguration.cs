@@ -50,6 +50,9 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
                 model => model.ToString(),
                 db => (UserStatus)Enum.Parse(typeof(UserStatus), db)
             );
+
+        builder.Property(u => u.VerificationCode).HasMaxLength(100);
+         
     }
 }
 

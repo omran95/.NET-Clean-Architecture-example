@@ -63,6 +63,10 @@ public static class DependencyInjection
     public static IServiceCollection AddInfraServices(this IServiceCollection services)
     {
         services.AddScoped<IPasswordHashService, PasswordHashService>();
+        services.AddScoped<ICodeGeneratorService>(provider =>
+        {
+            return new CodeGeneratorService(8);
+        });
         return services;
     }
 }
