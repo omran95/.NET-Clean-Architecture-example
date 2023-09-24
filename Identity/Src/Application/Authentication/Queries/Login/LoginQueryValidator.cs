@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using Identity.Src.Application.Authentication.Commands.Register;
 
 namespace Identity.Src.Application.Authentication.Queries.Login;
 

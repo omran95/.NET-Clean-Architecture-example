@@ -10,7 +10,7 @@ public class RegisterCommandValidator : AbstractValidator<RegisterCommand>
         RuleFor(command => command.LastName).NotEmpty();
         RuleFor(command => command.Email).NotEmpty().EmailAddress();
         RuleFor(command => command.Password).NotEmpty();
-        RuleFor(command => command.BirthDate).NotEmpty().Must(BeOver18);
+        RuleFor(command => command.BirthDate).NotEmpty().Must(BeOver18).WithMessage("You must be at least 18 years old to register");
 
     }
 
