@@ -33,14 +33,14 @@ public class User : AggregateRoot<UserId>
         return new UserDescriptor(this);
     }
 
-    public static ErrorOr<User> Create(string firstName, string lastName, string email, string password, DateOnly birthDateOnly, string verificationCode)
+    public static ErrorOr<User> Create(string firstName, string lastName, string email, string password, DateOnly birthDate, string verificationCode)
     {
-        BirthDate birthDate = BirthDate.Create(birthDateOnly);
-        if (!birthDate.GreaterThan18())
+        BirthDate userBirthDate = BirthDate.Create(birthDate);
+        if (!userBirthDate.GreaterThan18())
         {
             return Errors.User.LessThan18;
         }
-        return new User(UserId.CreateUnique(), firstName, lastName, email, password, UserStatus.PendingVerification, birthDate, verificationCode);
+        return new User(UserId.CreateUnique(), firstName, lastName, email, password, UserStatus.PendingVerification, userBirthDate, verificationCode);
     }
 
 }
